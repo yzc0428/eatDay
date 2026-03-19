@@ -1,0 +1,195 @@
+.decision-console {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.statistics-row {
+  margin-bottom: 24px;
+}
+
+.statistics-row .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.statistics-row .ant-statistic-title {
+  font-size: 14px;
+  color: #666;
+}
+
+.statistics-row .ant-statistic-content {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.status-filters {
+  margin-bottom: 16px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  background: #f5f5f5;
+  padding: 4px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.filter-tab {
+  padding: 10px 20px;
+  background: transparent;
+  color: #666;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filter-tab:hover {
+  background: rgba(24, 144, 255, 0.1);
+  color: #1890ff;
+}
+
+.filter-tab.active {
+  background: white;
+  color: #1890ff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.decision-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.decision-title {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+}
+
+.decision-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+  color: white;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.decision-content {
+  min-height: 400px;
+}
+
+.decision-table {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.decision-table .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+  color: #333;
+}
+
+.order-no {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 13px;
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.product-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.price-text {
+  color: #ff4d4f;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.empty-desc {
+  margin: 0;
+  font-size: 14px;
+  color: #999;
+}
+
+/* 表格内输入框样式优化 */
+.decision-table .ant-input-number {
+  width: 100%;
+}
+
+.decision-table .ant-input-number-input {
+  text-align: right;
+}
+
+/* 按钮样式优化 */
+.decision-table .ant-btn-primary {
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  border: none;
+  box-shadow: 0 2px 4px rgba(24, 144, 255, 0.3);
+}
+
+.decision-table .ant-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #40a9ff 0%, #1890ff 100%);
+  box-shadow: 0 4px 8px rgba(24, 144, 255, 0.4);
+}
+
+.decision-table .ant-btn-primary:disabled {
+  background: #d9d9d9;
+  box-shadow: none;
+}

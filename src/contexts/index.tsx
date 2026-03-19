@@ -1,24 +1,36 @@
 import { ReactNode } from 'react'
-import { DishProvider } from './DishContext'
-import { OrderProvider } from './OrderContext'
-import { FavoriteProvider } from './FavoriteContext'
+import { ProductProvider } from './ProductContext'
+import { ProductWarehouseRelationProvider } from './ProductWarehouseRelationContext'
+import { WarehouseProvider } from './WarehouseContext'
 import { PlanningProvider } from './PlanningContext'
+import { BiddingProvider } from './BiddingContext'
+import { DecisionProvider } from './DecisionContext'
+import { DeliveryProvider } from './DeliveryContext'
 
 // 组合所有 Provider
 export const AppProviders = ({ children }: { children: ReactNode }) => {
   return (
-    <DishProvider>
-      <OrderProvider>
-        <FavoriteProvider>
-          <PlanningProvider>{children}</PlanningProvider>
-        </FavoriteProvider>
-      </OrderProvider>
-    </DishProvider>
+    <ProductProvider>
+      <ProductWarehouseRelationProvider>
+        <WarehouseProvider>
+          <PlanningProvider>
+            <BiddingProvider>
+              <DecisionProvider>
+                <DeliveryProvider>{children}</DeliveryProvider>
+              </DecisionProvider>
+            </BiddingProvider>
+          </PlanningProvider>
+        </WarehouseProvider>
+      </ProductWarehouseRelationProvider>
+    </ProductProvider>
   )
 }
 
 // 导出所有 hooks
-export { useDishes } from './DishContext'
-export { useOrders } from './OrderContext'
-export { useFavorites } from './FavoriteContext'
+export { useProducts } from './ProductContext'
+export { useProductWarehouseRelation } from './ProductWarehouseRelationContext'
+export { useWarehouse, WarehouseProvider } from './WarehouseContext'
 export { usePlanning } from './PlanningContext'
+export { useBidding } from './BiddingContext'
+export { useDecision } from './DecisionContext'
+export { useDelivery } from './DeliveryContext'

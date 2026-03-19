@@ -1,18 +1,12 @@
 import { useState } from 'react'
-import { Layout, Menu, Typography } from 'antd'
+import { Layout, Menu } from 'antd'
 import {
-  HomeOutlined,
-  AppstoreOutlined,
-  ShoppingCartOutlined,
-  HistoryOutlined,
-  HeartOutlined,
-  BarChartOutlined,
+  BankOutlined,
 } from '@ant-design/icons'
 import { useNavigate, useLocation } from 'react-router-dom'
 import AppRoutes from '@/routes'
 
-const { Header, Sider, Content } = Layout
-const { Title } = Typography
+const { Sider, Content } = Layout
 
 const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -21,34 +15,29 @@ const AppLayout = () => {
 
   const menuItems = [
     {
-      key: '/',
-      icon: <HomeOutlined />,
-      label: '首页',
+      key: '/planning',
+      icon: <BankOutlined />,
+      label: '计划控制台',
     },
     {
-      key: '/dishes',
-      icon: <AppstoreOutlined />,
-      label: '菜品管理',
+      key: '/bidding',
+      icon: <BankOutlined />,
+      label: '商家降价',
     },
     {
-      key: '/order',
-      icon: <ShoppingCartOutlined />,
-      label: '点餐',
+      key: '/decision',
+      icon: <BankOutlined />,
+      label: '决策单控制台',
     },
     {
-      key: '/history',
-      icon: <HistoryOutlined />,
-      label: '历史记录',
+      key: '/delivery',
+      icon: <BankOutlined />,
+      label: '即时配送工作台',
     },
     {
-      key: '/favorites',
-      icon: <HeartOutlined />,
-      label: '我的收藏',
-    },
-    {
-      key: '/statistics',
-      icon: <BarChartOutlined />,
-      label: '统计分析',
+      key: '/warehouse',
+      icon: <BankOutlined />,
+      label: '仓库管理',
     },
   ]
 
@@ -58,20 +47,6 @@ const AppLayout = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Header
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          padding: '0 24px',
-          position: 'sticky',
-          top: 0,
-          zIndex: 1000,
-        }}
-      >
-        <Title level={3} style={{ color: 'white', margin: 0 }}>
-          🍽️ 今天吃什么
-        </Title>
-      </Header>
       <Layout>
         <Sider
           collapsible
@@ -80,9 +55,9 @@ const AppLayout = () => {
           breakpoint="lg"
           style={{
             overflow: 'auto',
-            height: 'calc(100vh - 64px)',
+            height: '100vh',
             position: 'sticky',
-            top: 64,
+            top: 0,
             left: 0,
           }}
         >

@@ -1,12 +1,15 @@
+import { BrowserRouter } from 'react-router-dom'
 import { AppProviders } from '@/contexts'
-import PlanningConsole from '@/pages/PlanningConsole'
+import AppLayout from '@/components/layout/AppLayout'
 import './App.css'
 
 function App() {
   return (
-    <AppProviders>
-      <PlanningConsole />
-    </AppProviders>
+    <BrowserRouter>
+      <AppProviders>
+        <AppLayout />
+      </AppProviders>
+    </BrowserRouter>
   )
 }
 

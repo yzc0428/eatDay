@@ -1,88 +1,69 @@
 import { useState } from 'react'
-import { Scenario, PlanType } from '@/types'
+import { Scenario, ScenarioType } from '@/types'
 import './ScenarioModal.css'
 
 interface ScenarioModalProps {
   isOpen: boolean
   scenarios: Scenario[]
+  onConfirm: (scenario: ScenarioType) => void
   onClose: () => void
-  onConfirm: (scenarioType: string, planType: PlanType) => void
 }
 
-const ScenarioModal = ({ isOpen, scenarios, onClose, onConfirm }: ScenarioModalProps) => {
-  const [selectedScenario, setSelectedScenario] = useState<string>('')
-  const [selectedPlanType, setSelectedPlanType] = useState<PlanType>(PlanType.PURCHASE)
-
-  if (!isOpen) return null
+const ScenarioModal = ({ isOpen, scenarios, onConfirm, onClose }: ScenarioModalProps) => {
+  const [selectedScenario, setSelectedScenario] = useState<ScenarioType | null>(null)
 
   const handleConfirm = () => {
-    if (!selectedScenario) {
-      alert('请选择一个场景')
-      return
+    if (selectedScenario) {
+      onConfirm(selectedScenario)
+      setSelectedScenario(null)
+      onClose()
     }
-    onConfirm(selectedScenario, selectedPlanType)
-    setSelectedScenario('')
-    setSelectedPlanType(PlanType.PURCHASE)
   }
 
-  const handleCancel = () => {
-    setSelectedScenario('')
-    setSelectedPlanType(PlanType.PURCHASE)
+  const handleClose = () => {
+    setSelectedScenario(null)
     onClose()
   }
 
+  if (!isOpen) return null
+
   return (
-    <div className="modal-overlay" onClick={handleCancel}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2 className="modal-title">发起场景计划</h2>
-          <button className="modal-close" onClick={handleCancel}>
-            ×
-          </button>
+    <div className="scenario-modal-overlay" onClick={handleClose}>
+      <div className="scenario-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="scenario-modal-header">
+          <h2 className="scenario-modal-title">选择场景</h2>
+          <button className="scenario-modal-close" onClick={handleClose}>×</button>
         </div>
 
-        <div className="modal-body">
-          <div className="form-group">
-            <label className="form-label">选择场景</label>
-            <div className="scenario-list">
-              {scenarios.map((scenario) => (
-                <div
-                  key={scenario.type}
-                  className={`scenario-item ${selectedScenario === scenario.type ? 'selected' : ''}`}
-                  onClick={() => setSelectedScenario(scenario.type)}
-                >
-                  <div className="scenario-name">{scenario.name}</div>
-                  <div className="scenario-description">{scenario.description}</div>
+        <div className="scenario-modal-body">
+          <p className="scenario-tip">请选择一个场景来生成对应的计划单</p>
+          <div className="scenario-list">
+            {scenarios.map((scenario) => (
+              <div
+                key={scenario.type}
+                className={`scenario-option ${selectedScenario === scenario.type ? 'selected' : ''}`}
+                onClick={() => setSelectedScenario(scenario.type)}
+              >
+                <div className="scenario-info">
+                  <h3 className="scenario-name">{scenario.name}</h3>
+                  <p className="scenario-desc">{scenario.description}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label className="form-label">计划类型</label>
-            <div className="plan-type-selector">
-              <button
-                className={`plan-type-btn ${selectedPlanType === PlanType.PURCHASE ? 'active' : ''}`}
-                onClick={() => setSelectedPlanType(PlanType.PURCHASE)}
-              >
-                采购计划
-              </button>
-              <button
-                className={`plan-type-btn ${selectedPlanType === PlanType.TRANSFER ? 'active' : ''}`}
-                onClick={() => setSelectedPlanType(PlanType.TRANSFER)}
-              >
-                调拨计划
-              </button>
-            </div>
+                <div className="scenario-radio">
+                  {selectedScenario === scenario.type && <span className="radio-checked">✓</span>}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="modal-footer">
-          <button className="btn-secondary" onClick={handleCancel}>
-            取消
-          </button>
-          <button className="btn-primary" onClick={handleConfirm}>
-            发起
+        <div className="scenario-modal-footer">
+          <button className="btn-secondary" onClick={handleClose}>取消</button>
+          <button
+            className="btn-primary"
+            onClick={handleConfirm}
+            disabled={!selectedScenario}
+          >
+            发起计划
           </button>
         </div>
       </div>
